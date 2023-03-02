@@ -14,13 +14,10 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
 
     console.log(row, col)
 
+    // @ts-ignore
     return {
         post: {
-            row: row,
-            col: col,
-            player: player,
-            title: 'Placements',
-            content: 'Placements'
+            board: globalThis.board,
         }
     };
 }

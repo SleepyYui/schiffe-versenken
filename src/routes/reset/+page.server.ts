@@ -17,7 +17,9 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
     globalThis.board = defaultField
     // @ts-ignore
     // console.log(globalThis.board.col1)
-
+    globalThis.playerOneStarted = undefined
+    // @ts-ignore
+    globalThis.playerTwoStarted = undefined
 
     return {
         post: {

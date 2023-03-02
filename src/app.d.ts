@@ -12,6 +12,8 @@ declare global {
 	let playerTwo: any;
 	let playerOneToken: any;
 	let playerTwoToken: any;
+	let playerOneStarted: any;
+	let playerTwoStarted: any;
 }
 
 export {};

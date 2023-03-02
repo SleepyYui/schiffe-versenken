@@ -1,4 +1,6 @@
 <script>
-  /** @type {import('./$types').PageData} */  export let data;
+    /** @type {import('./$types').PageData} */  export let data;
 </script>
-{JSON.stringify(data.post)}
+<body>
+{JSON.stringify(data.post.board)}
+</body>
