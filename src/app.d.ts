@@ -7,6 +7,11 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+	let board: any;
+	let playerOne: any;
+	let playerTwo: any;
+	let playerOneToken: any;
+	let playerTwoToken: any;
 }
 
 export {};
