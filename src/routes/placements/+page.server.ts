@@ -14,9 +14,9 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
 
     console.log(row, col)
 
-    // @ts-ignore
     return {
         post: {
+            // @ts-ignore
             board: globalThis.board,
         }
     };

@@ -12,7 +12,8 @@
         //refresh every 2 seconds
         setInterval(refresh, 2000);
     };
-    function refresh () {
+
+    function refresh() {
         //get the value of the button
         let board = getBoard()
         // Loop through each column and row
@@ -76,10 +77,13 @@
         if (xhr.status === 200) {
             // console.log(xhr.responseText);
             // get stuff inside <body> tags
-            board = xhr.responseText.match(/<body>([\s\S]*)<\/body>/)[1];
+            board = xhr.responseText
+            //console.log(board);
+            board = board.match(/<body>([\s\S]*)<\/body>/)[1];
             // remove stuff after </board>
-            board = board.match(/<board>([\s\S]*)<\/board>/)[1];
-            console.log(board);
+            //console.log(board);
+            board = board.split("</body>")[0];
+            //console.log(board);
             board = JSON.parse(board);
         }
         console.log(board);
