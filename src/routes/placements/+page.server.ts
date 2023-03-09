@@ -5,6 +5,22 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
     let col = params.url.searchParams.get('col')
     let player = params.url.searchParams.get('player')
 
+    if (player === null) {
+        player = 'playerOne'
+    }
+
+    let board;
+    if (player === 'playerOne') {
+        // @ts-ignore
+        board = globalThis.boardPlayerOne
+    } else if (player === 'playerTwo') {
+        // @ts-ignore
+        board = globalThis.boardPlayerTwo
+    } else {
+        // @ts-ignore
+        board = globalThis.boardPlayerOne
+    }
+
     if (row === null) {
         row = '0'
     }
@@ -16,8 +32,7 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
 
     return {
         post: {
-            // @ts-ignore
-            board: globalThis.board,
+            board: board,
         }
     };
 }

@@ -17,6 +17,7 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
             }
         };
     } else {
+
         let player;
         // @ts-ignore
         if (globalThis.playerOneToken === providedToken) {
@@ -34,17 +35,33 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
                 }
             }
         }
-
-
-
-    }
-
-    //console.log(row, col)
-
-    return {
-        post: {
+        let board;
+        if (player === 'playerOne') {
             // @ts-ignore
-            board: globalThis.board,
+            board = globalThis.boardPlayerTwo
+        } else if (player === 'playerTwo') {
+            // @ts-ignore
+            board = globalThis.boardPlayerOne
+        } else {
+            // @ts-ignore
+            board = globalThis.boardPlayerTwo
         }
-    };
+        console.log(board)
+        board[col][row] = "1"
+
+        if (player === 'playerOne') {
+            // @ts-ignore
+            globalThis.boardPlayerTwo = board
+        } else if (player === 'playerTwo') {
+            // @ts-ignore
+            globalThis.boardPlayerOne = board
+        }
+
+
+        return {
+            post: {
+                board: board,
+            }
+        };
+    }
 }

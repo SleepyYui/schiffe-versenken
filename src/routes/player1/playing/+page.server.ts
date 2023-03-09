@@ -34,6 +34,7 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
             globalThis.playerOneStarted = true
             //canStartGame = false
             startedGame = true
+            playerToken = providedToken
             // @ts-ignore
         } else if (globalThis.playerOneToken === providedToken) {
             playerToken = providedToken

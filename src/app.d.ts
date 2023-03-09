@@ -7,7 +7,8 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
-	let board: any;
+	let boardPlayerOne: any;
+	let boardPlayerTwo: any;
 	let playerOne: any;
 	let playerTwo: any;
 	let playerOneToken: any;

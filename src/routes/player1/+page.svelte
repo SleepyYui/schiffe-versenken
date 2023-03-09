@@ -81,7 +81,7 @@
         // set the board variable to the body of the /placements page
         let board;
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "/placements", false);
+        xhr.open("GET", "/placements?player=playerOne", false);
         xhr.send();
         if (xhr.status === 200) {
             // console.log(xhr.responseText);

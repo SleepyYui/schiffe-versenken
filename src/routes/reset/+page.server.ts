@@ -14,7 +14,9 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
     // set globalThis.board to the object inside the defaultField.json file
     let defaultField = (await import('../../../static/defaultField.json')).default
     // @ts-ignore
-    globalThis.board = defaultField
+    globalThis.boardPlayerOne = defaultField
+    // @ts-ignore
+    globalThis.boardPlayerTwo = defaultField
     // @ts-ignore
     // console.log(globalThis.board.col1)
     globalThis.playerOneStarted = undefined
@@ -24,7 +26,9 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
     return {
         post: {
             // @ts-ignore
-            stuff: globalThis.board,
+            stuff: globalThis.boardPlayerOne,
+            // @ts-ignore
+            stuff2: globalThis.boardPlayerTwo,
         }
     };
 }

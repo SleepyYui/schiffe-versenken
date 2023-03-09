@@ -5,7 +5,7 @@
     <title>Player 1</title>
 </head>
 <body>
-<button id="btn" style="display: none" value="{JSON.stringify(data.post.board)}">Board</button>
+<button id="btn" style="display: none" value="{JSON.stringify(data.post.boardPlayerTwo)}">Board</button>
 <button id="sid" style="display: none" value="{data.post.playerToken}">Session ID</button>
 <script>
     // on page load
@@ -38,9 +38,9 @@
                     case "0":
                         color = "blue";
                         // convert row and col to numbers (remove the first 3 letters)
-                        let row2 = row.substring(3);
-                        let col2 = col.substring(3);
-                        value = "<button onclick='buttonPress(" + row2 + "," + col2 + ")'>🟦</button>";
+                        // let row2 = row.substring(3);
+                        // let col2 = col.substring(3);
+                        value = "<button onclick='buttonPress(\"" + row + "\",\"" + col + "\")'>🟦</button>";
                         break;
                     case "1":
                         color = "green";
@@ -121,8 +121,7 @@
             //console.log(board);
             board = JSON.parse(board);
         }
-        console.log(board);
-        return board;
+        refresh();
     }
 
 </script>
