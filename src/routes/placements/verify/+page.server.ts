@@ -73,7 +73,7 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
             }
         };
     } else {
-        console.log(providedToken);
+        //console.log(providedToken);
         let player;
         // @ts-ignore
         if (globalThis.playerOneToken === providedToken) {
@@ -106,7 +106,7 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
                 }
             };
         }
-        console.log(player);
+        //console.log(player);
         //console.log(board);
 
         if (player === 'playerOne') {
@@ -132,21 +132,21 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
                 };
             }
         }
-        console.log(shipCountCheck);
+        //console.log(shipCountCheck);
         singleShipCheck = checkSingleShips(board);
-        console.log(singleShipCheck);
+        //console.log(singleShipCheck);
 
         if (singleShipCheck && shipCountCheck) {
             // @ts-ignore
             globalThis.playerOneVerifiedPlacements = true;
-            console.log('verified placements');
+            //console.log('verified placements');
             return {
                 post: {
                     board: board,
                 }
             };
         } else {
-            console.log('resetting board');
+            //console.log('resetting board');
             // @ts-ignore
             let defaultBoard = globalThis.boardTemplate;
             //console.log(defaultBoard);
@@ -189,7 +189,5 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
             }
 
         }
-
-
     }
 }
