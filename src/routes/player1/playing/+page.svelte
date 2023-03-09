@@ -112,12 +112,45 @@
         refresh();
     }
 
+    function checkForVerification() {
+        // set the board variable to the body of the /placements page
+        let isVerified = false;
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "/placements/isVerified?player=playerOne", false);
+        xhr.send();
+        if (xhr.status === 200) {
+            // console.log(xhr.responseText);
+            // get stuff inside <body> tags
+            isVerified = xhr.responseText
+            //console.log(board);
+            isVerified = isVerified.match(/<body>([\s\S]*)<\/body>/)[1];
+            // remove stuff after </board>
+            //console.log(board);
+            isVerified = isVerified.split("</body>")[0];
+            //console.log(board);
+            isVerified = JSON.parse(isVerified);
+        }
+        //console.log("isVerified");
+        //console.log(isVerified);
+        return isVerified;
+    }
+
     function verifyPlacements() {
         let sid = document.getElementById("sid").value;
         let xhr = new XMLHttpRequest();
         xhr.open("GET", `/placements/verify?sid=${sid}`, false);
         xhr.send();
         refresh();
+        let isVerified = checkForVerification();
+        if (isVerified) {
+            // remove verify button
+            let verifyButton = document.getElementById("verify");
+            verifyButton.parentNode.removeChild(verifyButton);
+            // add a text saying that the placements have been verified
+            let text = document.createElement("p");
+            text.innerHTML = "Placements have been verified";
+            document.body.appendChild(text);
+        }
     }
 
 </script>
@@ -140,7 +173,7 @@
 <button onclick="window.location.href='/reset'">Reset</button>
 <button onclick="window.location.href='/'">Home</button>
 {#if !data.post.verifiedPlacements}
-    <button onclick='verifyPlacements()'>Verify Placements</button>
+    <button id="verify" onclick='verifyPlacements()'>Verify Placements</button>
 {/if}
 
 {JSON.stringify(data.post)}
