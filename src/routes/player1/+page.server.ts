@@ -11,7 +11,7 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
     let token = Math.random().toString(36).substr(2, 9);
     let startedGame = false
     // @ts-ignore
-    let board = globalThis.boardPlayerTwo
+    let board = globalThis.boardPlayerOne
 
     if (params.url.searchParams.get('debug') === 'true') {
         debug = true

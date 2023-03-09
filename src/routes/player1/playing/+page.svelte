@@ -5,7 +5,7 @@
     <title>Player 1</title>
 </head>
 <body>
-<button id="btn" style="display: none" value="{JSON.stringify(data.post.boardPlayerTwo)}">Board</button>
+<button id="btn" style="display: none" value="{JSON.stringify(data.post.boardPlayerOne)}">Board</button>
 <button id="sid" style="display: none" value="{data.post.playerToken}">Session ID</button>
 <script>
     // on page load
@@ -109,18 +109,14 @@
         let xhr = new XMLHttpRequest();
         xhr.open("GET", `/placements/place?row=${x}&col=${y}&sid=${sid}`, false);
         xhr.send();
-        if (xhr.status === 200) {
-            // console.log(xhr.responseText);
-            // get stuff inside <body> tags
-            board = xhr.responseText
-            //console.log(board);
-            board = board.match(/<body>([\s\S]*)<\/body>/)[1];
-            // remove stuff after </board>
-            //console.log(board);
-            board = board.split("</body>")[0];
-            //console.log(board);
-            board = JSON.parse(board);
-        }
+        refresh();
+    }
+
+    function verifyPlacements() {
+        let sid = document.getElementById("sid").value;
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", `/placements/verify?sid=${sid}`, false);
+        xhr.send();
         refresh();
     }
 
@@ -140,6 +136,9 @@
         // redirect to home page
         window.location.href = "/";
     </script>
+{/if}
+{#if !data.post.verifiedPlacements}
+    <button onclick='verifyPlacements()'>Verify Placements</button>
 {/if}
 
 {JSON.stringify(data.post)}

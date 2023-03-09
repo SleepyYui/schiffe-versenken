@@ -35,26 +35,58 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
                 }
             }
         }
+
         let board;
         if (player === 'playerOne') {
             // @ts-ignore
-            board = globalThis.boardPlayerTwo
+            board = globalThis.boardPlayerOne
         } else if (player === 'playerTwo') {
             // @ts-ignore
-            board = globalThis.boardPlayerOne
-        } else {
-            // @ts-ignore
             board = globalThis.boardPlayerTwo
+        } else {
+            return {
+                post: {
+                    board: undefined,
+                }
+            };
         }
-        console.log(board)
-        board[col][row] = "1"
 
         if (player === 'playerOne') {
             // @ts-ignore
-            globalThis.boardPlayerTwo = board
+            if (globalThis.playerOneTotalShips != 0) {
+                // @ts-ignore
+                globalThis.playerOneTotalShips = globalThis.playerOneTotalShips - 1
+            } else {
+                return {
+                    post: {
+                        board: board,
+                    }
+                };
+            }
         } else if (player === 'playerTwo') {
             // @ts-ignore
+            if (globalThis.playerTwoTotalShips != 0) {
+                // @ts-ignore
+                globalThis.playerTwoTotalShips = globalThis.playerTwoTotalShips - 1
+            } else {
+                return {
+                    post: {
+                        board: board,
+                    }
+                };
+            }
+        }
+
+
+
+        if (player === 'playerOne') {
+            board[col][row] = '1'
+            // @ts-ignore
             globalThis.boardPlayerOne = board
+        } else if (player === 'playerTwo') {
+            board[col][row] = '2'
+            // @ts-ignore
+            globalThis.boardPlayerTwo = board
         }
 
 
