@@ -29,7 +29,19 @@ function checkSingleShips(board: any) {
                 console.log(nextcol);
                 nextrow = "row" + (parseInt(row.substring(3)) + 1);
                 console.log(nextrow);
-                if (board[prevcol][prevrow] !== "1" && board[nextcol][nextrow] !== "1" && board[prevcol][nextrow] !== "1" && board[nextcol][prevrow] !== "1" && board[prevcol][row] !== "1" && board[nextcol][row] !== "1" && board[col][prevrow] !== "1" && board[col][nextrow] !== "1") { // forgive me for what I have done
+                if (prevcol === "col0") {
+                    console.log("ship is on the edge of the board");
+                    if (board[nextcol][nextrow] !== "1" && board[nextcol][prevrow] !== "1" && board[nextcol][row] !== "1" && board[col][prevrow] !== "1" && board[col][nextrow] !== "1") {
+                        console.log("ship has no neighbours");
+                        checkedShipCount++;
+                    }
+                } else if (nextcol === "col9") {
+                    console.log("ship is on the edge of the board");
+                    if (board[prevcol][nextrow] !== "1" && board[prevcol][prevrow] !== "1" && board[prevcol][row] !== "1" && board[col][prevrow] !== "1" && board[col][nextrow] !== "1") {
+                        console.log("ship has no neighbours");
+                        checkedShipCount++;
+                    }
+                } else if (board[prevcol][prevrow] !== "1" && board[nextcol][nextrow] !== "1" && board[prevcol][nextrow] !== "1" && board[nextcol][prevrow] !== "1" && board[prevcol][row] !== "1" && board[nextcol][row] !== "1" && board[col][prevrow] !== "1" && board[col][nextrow] !== "1") { // forgive me for what I have done
                     console.log("ship has no neighbours");
                     checkedShipCount++;
                 }
