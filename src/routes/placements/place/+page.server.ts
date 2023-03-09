@@ -80,11 +80,23 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
 
 
         if (player === 'playerOne') {
-            board[col][row] = '1'
+            if (board[col][row] === '1') {
+                // @ts-ignore
+                globalThis.playerOneTotalShips = globalThis.playerOneTotalShips + 1
+                board[col][row] = '0'
+            } else if (board[col][row] === '0') {
+                board[col][row] = '1'
+            }
             // @ts-ignore
             globalThis.boardPlayerOne = board
         } else if (player === 'playerTwo') {
-            board[col][row] = '2'
+            if (board[col][row] === '2') {
+                // @ts-ignore
+                globalThis.playerTwoTotalShips = globalThis.playerTwoTotalShips + 1
+                board[col][row] = '0'
+            } else if (board[col][row] === '0') {
+                board[col][row] = '2'
+            }
             // @ts-ignore
             globalThis.boardPlayerTwo = board
         }

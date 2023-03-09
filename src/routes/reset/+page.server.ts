@@ -110,9 +110,9 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
     // @ts-ignore
     globalThis.playerTwoStarted = undefined
     // @ts-ignore
-    globalThis.playerOneShips = 1
+    globalThis.playerOneShips = 10
     // @ts-ignore
-    globalThis.playerTwoShips = 1
+    globalThis.playerTwoShips = 10
     // @ts-ignore
     globalThis.playerOneDoubleShips = 2
     // @ts-ignore

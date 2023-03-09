@@ -44,7 +44,7 @@
                         break;
                     case "1":
                         color = "green";
-                        value = "<button>🟩</button>";
+                        value = "<button onclick='buttonPress(\"" + row + "\",\"" + col + "\")'>🟩</button>";
                         break;
                     case "2":
                         color = "red";
@@ -137,6 +137,8 @@
         window.location.href = "/";
     </script>
 {/if}
+<button onclick="window.location.href='/reset'">Reset</button>
+<button onclick="window.location.href='/'">Home</button>
 {#if !data.post.verifiedPlacements}
     <button onclick='verifyPlacements()'>Verify Placements</button>
 {/if}

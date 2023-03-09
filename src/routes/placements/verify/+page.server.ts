@@ -9,22 +9,35 @@ function checkQuadrupleShips(board: any) {
 
 function checkSingleShips(board: any) {
     let checkedShips = false;
+    let checkedShipCount = 0;
+    let nextrow = "row0";
+    let nextcol = "col0";
+    let prevrow = "row0";
+    let prevcol = "col0";
     // for every column
-    for (let i = 0; i < board.length; i++) {
-        // for every row
-        for (let j = 0; j < board[i].length; j++) {
+    for (let col in board) {
+        for (let row in board[col]) {
             // check if the field is a ship
-            if (board[i][j] === "1") {
+            if (board[col][row] === "1") {
+                console.log("single ship testing");
                 // check if the field is the first field of a ship
-                if (board[i][j - 1] === "0" && board[i][j + 1] === "0" && board[i - 1][j] === "0" && board[i + 1][j] === "0") {
-                    // check if the field is the last field of a ship
-                    if (board[i - 1][j - 1] === "0" && board[i + 1][j + 1] === "0" && board[i - 1][j + 1] === "0" && board[i + 1][j - 1] === "0") {
-                        checkedShips = true;
-                    }
+                prevcol = "col" + (parseInt(col.substring(3)) - 1);
+                console.log(prevcol);
+                prevrow = "row" + (parseInt(row.substring(3)) - 1);
+                console.log(prevrow);
+                nextcol = "col" + (parseInt(col.substring(3)) + 1);
+                console.log(nextcol);
+                nextrow = "row" + (parseInt(row.substring(3)) + 1);
+                console.log(nextrow);
+                if (board[prevcol][prevrow] !== "1" && board[nextcol][nextrow] !== "1" && board[prevcol][nextrow] !== "1" && board[nextcol][prevrow] !== "1" && board[prevcol][row] !== "1" && board[nextcol][row] !== "1" && board[col][prevrow] !== "1" && board[col][nextrow] !== "1") { // forgive me for what I have done
+                    console.log("ship has no neighbours");
+                    checkedShipCount++;
                 }
             }
         }
     }
+    // @ts-ignore
+    checkedShips = checkedShipCount === globalThis.playerOneShips;
     return checkedShips;
 }
 
@@ -82,7 +95,7 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
             };
         }
         console.log(player);
-        console.log(board);
+        //console.log(board);
 
         if (player === 'playerOne') {
             // @ts-ignore
@@ -124,9 +137,9 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
             console.log('resetting board');
             // @ts-ignore
             let defaultBoard = globalThis.boardTemplate;
-            console.log(defaultBoard);
+            //console.log(defaultBoard);
             // @ts-ignore
-            console.log(globalThis.boardTemplate);
+            //console.log(globalThis.boardTemplate);
             if (player === 'playerOne') {
                 // @ts-ignore
                 globalThis.playerOneTotalShips = 10;
