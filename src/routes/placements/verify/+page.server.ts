@@ -129,7 +129,7 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
             console.log(globalThis.boardTemplate);
             if (player === 'playerOne') {
                 // @ts-ignore
-                //globalThis.playerOneTotalShips = 10;
+                globalThis.playerOneTotalShips = 10;
                 // @ts-ignore
                 globalThis.playerOneDoubleShips = 2;
                 // @ts-ignore
