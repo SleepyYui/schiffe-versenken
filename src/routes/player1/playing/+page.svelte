@@ -5,13 +5,13 @@
     <title>Player 1</title>
 </head>
 <body>
-<button id="btn" style="display: none" value="{JSON.stringify(data.post.board)}">Start</button>
+<button id="btn" style="display: none" value="{JSON.stringify(data.post.board)}">Board</button>
+<button id="sid" style="display: none" value="{data.post.playerToken}">Session ID</button>
 <script>
     // on page load
     window.onload = function () {
         //refresh every 2 seconds
         setInterval(refresh, 2000);
-        // wait for 100ms
         setTimeout(function () {
             refresh(); // refresh once on page load
         }, 200);
@@ -37,31 +37,34 @@
                 switch (currentValue) {
                     case "0":
                         color = "blue";
-                        value = "🟦";
+                        // convert row and col to numbers (remove the first 3 letters)
+                        let row2 = row.substring(3);
+                        let col2 = col.substring(3);
+                        value = "<button onclick='buttonPress(" + row2 + "," + col2 + ")'>🟦</button>";
                         break;
                     case "1":
                         color = "green";
-                        value = "🟩";
+                        value = "<button>🟩</button>";
                         break;
                     case "2":
                         color = "red";
-                        value = "🟥";
+                        value = "<button>🟥</button>";
                         break;
                     case "3":
                         color = "green-destroyed";
-                        value = "💥";
+                        value = "<button>💥</button>";
                         break;
                     case "4":
                         color = "red-destroyed";
-                        value = "💥";
+                        value = "<button>💥</button>";
                         break;
                     case "5":
                         color = "green-missed";
-                        value = "🟨";
+                        value = "<button>🟨</button>";
                         break;
                     case "6":
                         color = "red-missed";
-                        value = "🟨";
+                        value = "<button>🟨</button>";
                         break;
 
                 }
@@ -99,15 +102,48 @@
         return board;
     }
 
+    function buttonPress(x, y) {
+        // set the board variable to the body of the /placements page
+        let board;
+        let sid = document.getElementById("sid").value;
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", `/placements/place?row=${x}&col=${y}&sid=${sid}`, false);
+        xhr.send();
+        if (xhr.status === 200) {
+            // console.log(xhr.responseText);
+            // get stuff inside <body> tags
+            board = xhr.responseText
+            //console.log(board);
+            board = board.match(/<body>([\s\S]*)<\/body>/)[1];
+            // remove stuff after </board>
+            //console.log(board);
+            board = board.split("</body>")[0];
+            //console.log(board);
+            board = JSON.parse(board);
+        }
+        console.log(board);
+        return board;
+    }
+
 </script>
 
 {#if data.post.canStartGame}
-    <button onclick="window.location.href='/player1/playing?sid={data.post.playerToken}'">Start Playing</button>
+    <button onclick="window.location.href='/player1?sid={data.post.playerToken}'">Start Playing</button>
 {/if}
 {#if data.post.rejectedToken}
-    <p>Du kannst diesem Spiel nicht mehr beitreten.</p>
+    <script>
+        // redirect to home page
+        window.location.href = "/";
+    </script>
+{/if}
+{#if !data.post.startedGame}
+    <script>
+        // redirect to home page
+        window.location.href = "/";
+    </script>
 {/if}
 
+{JSON.stringify(data.post)}
 
 <table>
     <tbody id="board">
