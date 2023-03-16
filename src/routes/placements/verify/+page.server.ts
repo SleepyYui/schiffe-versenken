@@ -19,7 +19,7 @@ function checkSingleShips(board: any) {
         for (let row in board[col]) {
             // check if the field is a ship
             if (board[col][row] === "1") {
-                console.log("single ship testing");
+                // console.log("single ship testing");
                 // check if the field is the first field of a ship
                 prevcol = "col" + (parseInt(col.substring(3)) - 1);
                 //console.log(prevcol);
