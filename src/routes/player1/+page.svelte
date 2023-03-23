@@ -75,7 +75,7 @@
                 //console.log(cell);
             }
         }
-    };
+    }
 
     function getBoard() {
         // set the board variable to the body of the /placements page

@@ -78,7 +78,6 @@ export async function load(params: { url: { searchParams: { get: (arg0: string) 
         }
 
 
-
         if (player === 'playerOne') {
             if (board[col][row] === '1') {
                 // @ts-ignore
