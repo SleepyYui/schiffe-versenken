@@ -102,7 +102,7 @@
 </script>
 
 {#if data.post.canStartGame}
-    <button onclick="window.location.href='/player1/playing?sid={data.post.playerToken}'">Start Playing</button>
+    <button onclick="window.location.href='/player1/playing?sid='{data.post.playerToken}">Start Playing</button>
 {/if}
 {#if data.post.rejectedToken}
     <p>Du kannst diesem Spiel nicht mehr beitreten.</p>

@@ -1,20 +1,0 @@
-
-ptypescript:S3776
-"TRefactor this function to reduce its Cognitive Complexity from 25 to the 15 allowed.(ßÑÉº
-Qtypescript:S1854"5Remove this useless assignment to variable "nextrow".(£”¥Œ
-Qtypescript:S1854"5Remove this useless assignment to variable "nextcol".(‘çµ¶
-Ptypescript:S1854"5Remove this useless assignment to variable "prevrow".(ÃŒ/
-9typescript:S125"Remove this commented out code.(æš“j
-?typescript:S125"Remove this commented out code.(í»‘üÿÿÿÿ
-?typescript:S125"Remove this commented out code.(Å‹ÚÊúÿÿÿÿ
-?typescript:S125"Remove this commented out code.(ÜçÖ¢şÿÿÿÿ
-?typescript:S125!"Remove this commented out code.(ÍëÕéıÿÿÿÿ
-:typescript:S125#"Remove this commented out code.(ñÆş
-?typescript:S125'"Remove this commented out code.(ÍëÕéıÿÿÿÿ
-:typescript:S125)"Remove this commented out code.(ñÆş
-ptypescript:S37768"TRefactor this function to reduce its Cognitive Complexity from 29 to the 15 allowed.(™ß¼Ï
-?typescript:S125L"Remove this commented out code.(ëŠ·Üûÿÿÿÿ
-:typescript:S125m"Remove this commented out code.(ò€³†
-@typescript:S125‡"Remove this commented out code.(…Ö×œøÿÿÿÿ
-;typescript:S125‰"Remove this commented out code.(á¦Â
-;typescript:S125"Remove this commented out code.(ÕøÜÒ
